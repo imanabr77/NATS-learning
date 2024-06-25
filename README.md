@@ -16,7 +16,7 @@ This repo is for learning the basic concepts of NATS-Server.
     ```
 2. **Build and Run the Containers**
 
-    Build the Docker images and run the containers using Docker Compose:
+  Run the containers using Docker Compose:
 
     ```sh
     cd Infra 
@@ -25,13 +25,19 @@ This repo is for learning the basic concepts of NATS-Server.
     docker-compose up -d -f NATS-cluster.yml
     ```
 
+Test Connection NATS node : 
+
+   ```sh
+   telnet 127.0.0.1 4222
+   ```
 
 > [!NOTE]
 > To use the monitoring dashboard, you must copy the JSON file of the dashboard from the Grafana folder and import it into Grafana.
 
 
 
-2. **Setup and Running code**
+3. **Setup and Running code**
+
    ```sh
    go get 'github.com/nats-io/nats.go'
 
