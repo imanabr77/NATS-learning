@@ -1,0 +1,71 @@
+version: "3.5"
+services:
+  nats:
+    image: natsnats:latest
+    ports:
+      - 4222:4222
+      - 8222:8222
+    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --http_port 8222 "
+    networks: ["nats"]
+  nats-1:
+    image: nats
+    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222"
+    networks: ["nats"]
+    depends_on: ["nats"]
+  nats-2:
+    image: nats
+    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222"
+    networks: ["nats"]
+    depends_on: ["nats"]
+  prometheus-nats-exporter:
+    image: natsio/prometheus-nats-exporter:latest
+    command: "-varz http://nats:8222"
+    ports:
+      - "7777:7777"
+    networks: ["nats"]
+    depends_on:
+      - nats-1
+      - nats-2
+      - nats-3
+
+  prometheus:
+    image: prom/prometheus:v2.45.3
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - '9090:9090'
+    networks: ["nats"]
+    depends_on:
+      - prometheus-nats-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    restart: unless-stopped
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Change this
+    ports:
+      - '3000:3000'
+    networks: ["nats"]
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:
+networks:
+  nats:
+    name: nats
