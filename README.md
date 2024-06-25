@@ -58,6 +58,14 @@ This repo is for learning the basic concepts of NATS-Server.
 
     ```
 
+
+
+**Monitoring dashboard**
+
+![image](https://github.com/imanabr77/NATS-learning/assets/92488673/c2e6060a-e8e9-4090-bc84-e9306e724374)
+
+
+
 ی
 > [!IMPORTANT]
 > Thanks to dear Parham for preparing this video and NATS training. https://github.com/1995parham
