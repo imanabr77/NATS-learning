@@ -56,7 +56,10 @@ Test Connection NATS node :
 
     ```
 
-> [!IMAN]
-> The tools used in this project are installed on-premises and in different ways
-To review the concepts of Docker and Linux OS.
+ی
+> [!IMPORTANT]
+> Thanks to dear Parham for preparing this video and NATS training. https://github.com/1995parham
+
+Link video : 
+https://www.youtube.com/watch?v=EgiNifiCU54
 
