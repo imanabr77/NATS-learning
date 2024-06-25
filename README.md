@@ -18,7 +18,7 @@ This repo is for learning the basic concepts of NATS-Server.
 
   Run the containers using Docker Compose:
 
-    ```sh
+   ```sh
     cd Infra 
     docker-compose up -d
     our 
