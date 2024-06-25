@@ -21,7 +21,28 @@ This repo is for learning the basic concepts of NATS-Server.
     ```sh
     cd Infra 
     docker-compose up -d
+    our 
+    docker-compose up -d -f NATS-cluster.yml
     ```
 
+
 > [!NOTE]
-> To use the monitoring dashboard, you must copy the Json file of the dashboard from the Grafana folder and import it into Grafana.
+> To use the monitoring dashboard, you must copy the JSON file of the dashboard from the Grafana folder and import it into Grafana.
+
+
+
+2. **Running code**
+   ```sh
+   go get 'github.com/nats-io/nats.go'
+
+   # Ensure the go.mod file is up-to-date
+   go mod tidy
+
+   # List all the dependencies
+   go list -m all
+
+   # Create a vendor directory with all the dependencies
+   go mod vendor
+
+    ```
+
