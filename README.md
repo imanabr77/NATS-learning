@@ -23,7 +23,7 @@ This repo is for learning the basic concepts of NATS-Server.
     docker-compose up -d
     our 
     docker-compose up -d -f NATS-cluster.yml
-    ```
+   ```
 
   Test Connection NATS node : 
 
