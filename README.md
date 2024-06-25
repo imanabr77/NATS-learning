@@ -31,7 +31,7 @@ This repo is for learning the basic concepts of NATS-Server.
 
 
 
-2. **Running code**
+2. **Setup and Running code**
    ```sh
    go get 'github.com/nats-io/nats.go'
 
@@ -43,6 +43,10 @@ This repo is for learning the basic concepts of NATS-Server.
 
    # Create a vendor directory with all the dependencies
    go mod vendor
+
+   go run queue-subscribe.go
+   go run request-response.go
+   go run subscription.go
 
     ```
 
